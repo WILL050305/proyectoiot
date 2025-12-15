@@ -1,0 +1,6 @@
+
+gabrielcardenassanchez80@gmail.com
+gabriel0503
+5xOzmt5oYEVt8qg6RsX4S0eyIXl2
+
+{ "rules": { ".read": "auth.uid === '5xOzmt5oYEVt8qg6RsX4S0eyIXl2'", ".write": "auth.uid === '5xOzmt5oYEVt8qg6RsX4S0eyIXl2'" } }

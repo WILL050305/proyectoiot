@@ -1,0 +1,259 @@
+{
+  "historial": {
+    "1735689600": {
+      "accion": "base creada",
+      "fecha": "2025-01-01 00:00:00",
+      "sensor": "sensor_test",
+      "timestamp": 1735689600
+    },
+    "1765724603": {
+      "accion": "Riego automático ON - romero",
+      "fecha": "2025-12-14 10:03:23",
+      "sensor": "sensor2",
+      "timestamp": 1765724603
+    },
+    "1765724822": {
+      "accion": "Riego automático ON - alfalfa",
+      "fecha": "2025-12-14 10:07:02",
+      "sensor": "sensor1",
+      "timestamp": 1765724822
+    },
+    "1765726690": {
+      "accion": "Auto ON - alfalfa",
+      "fecha": "2025-12-14 10:38:10",
+      "sensor": "sensor1",
+      "timestamp": 1765726690
+    },
+    "1765726693": {
+      "accion": "Auto ON - romero",
+      "fecha": "2025-12-14 10:38:13",
+      "sensor": "sensor2",
+      "timestamp": 1765726693
+    },
+    "1765732406": {
+      "accion": "Auto OFF - alfalfa",
+      "fecha": "2025-12-14 12:13:26",
+      "sensor": "sensor1",
+      "timestamp": 1765732406
+    },
+    "1765732443": {
+      "accion": "Auto ON - alfalfa",
+      "fecha": "2025-12-14 12:14:03",
+      "sensor": "sensor1",
+      "timestamp": 1765732443
+    },
+    "1765732600": {
+      "accion": "Auto OFF - alfalfa",
+      "fecha": "2025-12-14 12:16:40",
+      "sensor": "sensor1",
+      "timestamp": 1765732600
+    },
+    "1765732660": {
+      "accion": "Auto ON - romero",
+      "fecha": "2025-12-14 12:17:40",
+      "sensor": "sensor2",
+      "timestamp": 1765732660
+    },
+    "1765732720": {
+      "accion": "Auto OFF - romero",
+      "fecha": "2025-12-14 12:18:40",
+      "sensor": "sensor2",
+      "timestamp": 1765732720
+    },
+    "1765732780": {
+      "accion": "Auto ON - alfalfa",
+      "fecha": "2025-12-14 12:19:40",
+      "sensor": "sensor1",
+      "timestamp": 1765732780
+    },
+    "1765732840": {
+      "accion": "Auto OFF - alfalfa",
+      "fecha": "2025-12-14 12:20:40",
+      "sensor": "sensor1",
+      "timestamp": 1765732840
+    },
+    "1765732900": {
+      "accion": "Auto ON - romero",
+      "fecha": "2025-12-14 12:21:40",
+      "sensor": "sensor2",
+      "timestamp": 1765732900
+    },
+    "1765732960": {
+      "accion": "Auto OFF - romero",
+      "fecha": "2025-12-14 12:22:40",
+      "sensor": "sensor2",
+      "timestamp": 1765732960
+    },
+    "1765733020": {
+      "accion": "Auto ON - alfalfa",
+      "fecha": "2025-12-14 12:23:40",
+      "sensor": "sensor1",
+      "timestamp": 1765733020
+    },
+    "1765733080": {
+      "accion": "Auto OFF - alfalfa",
+      "fecha": "2025-12-14 12:24:40",
+      "sensor": "sensor1",
+      "timestamp": 1765733080
+    },
+    "1765733140": {
+      "accion": "Auto ON - romero",
+      "fecha": "2025-12-14 12:25:40",
+      "sensor": "sensor2",
+      "timestamp": 1765733140
+    },
+    "1765733200": {
+      "accion": "Auto OFF - romero",
+      "fecha": "2025-12-14 12:26:40",
+      "sensor": "sensor2",
+      "timestamp": 1765733200
+    },
+    "1765733260": {
+      "accion": "Auto ON - alfalfa",
+      "fecha": "2025-12-14 12:27:40",
+      "sensor": "sensor1",
+      "timestamp": 1765733260
+    },
+    "1765733320": {
+      "accion": "Auto OFF - alfalfa",
+      "fecha": "2025-12-14 12:28:40",
+      "sensor": "sensor1",
+      "timestamp": 1765733320
+    },
+    "1765733380": {
+      "accion": "Auto ON - romero",
+      "fecha": "2025-12-14 12:29:40",
+      "sensor": "sensor2",
+      "timestamp": 1765733380
+    },
+    "1765733440": {
+      "accion": "Auto OFF - romero",
+      "fecha": "2025-12-14 12:30:40",
+      "sensor": "sensor2",
+      "timestamp": 1765733440
+    },
+    "1765733500": {
+      "accion": "Auto ON - alfalfa",
+      "fecha": "2025-12-14 12:31:40",
+      "sensor": "sensor1",
+      "timestamp": 1765733500
+    },
+    "1765733560": {
+      "accion": "Auto OFF - alfalfa",
+      "fecha": "2025-12-14 12:32:40",
+      "sensor": "sensor1",
+      "timestamp": 1765733560
+    },
+    "1765733620": {
+      "accion": "Auto ON - romero",
+      "fecha": "2025-12-14 12:33:40",
+      "sensor": "sensor2",
+      "timestamp": 1765733620
+    },
+    "1765733680": {
+      "accion": "Auto OFF - romero",
+      "fecha": "2025-12-14 12:34:40",
+      "sensor": "sensor2",
+      "timestamp": 1765733680
+    },
+    "1765733740": {
+      "accion": "Auto ON - alfalfa",
+      "fecha": "2025-12-14 12:35:40",
+      "sensor": "sensor1",
+      "timestamp": 1765733740
+    },
+    "1765733800": {
+      "accion": "Auto OFF - alfalfa",
+      "fecha": "2025-12-14 12:36:40",
+      "sensor": "sensor1",
+      "timestamp": 1765733800
+    },
+    "1765733860": {
+      "accion": "Auto ON - romero",
+      "fecha": "2025-12-14 12:37:40",
+      "sensor": "sensor2",
+      "timestamp": 1765733860
+    },
+    "1765733920": {
+      "accion": "Auto OFF - romero",
+      "fecha": "2025-12-14 12:38:40",
+      "sensor": "sensor2",
+      "timestamp": 1765733920
+    },
+    "1765733980": {
+      "accion": "Auto ON - alfalfa",
+      "fecha": "2025-12-14 12:39:40",
+      "sensor": "sensor1",
+      "timestamp": 1765733980
+    },
+    "1765734040": {
+      "accion": "Auto OFF - alfalfa",
+      "fecha": "2025-12-14 12:40:40",
+      "sensor": "sensor1",
+      "timestamp": 1765734040
+    },
+    "1765734100": {
+      "accion": "Auto ON - romero",
+      "fecha": "2025-12-14 12:41:40",
+      "sensor": "sensor2",
+      "timestamp": 1765734100
+    },
+    "1765734160": {
+      "accion": "Auto OFF - romero",
+      "fecha": "2025-12-14 12:42:40",
+      "sensor": "sensor2",
+      "timestamp": 1765734160
+    },
+    "1765734220": {
+      "accion": "Auto ON - alfalfa",
+      "fecha": "2025-12-14 12:43:40",
+      "sensor": "sensor1",
+      "timestamp": 1765734220
+    },
+    "1765734280": {
+      "accion": "Auto OFF - alfalfa",
+      "fecha": "2025-12-14 12:44:40",
+      "sensor": "sensor1",
+      "timestamp": 1765734280
+    }
+  },
+  "plantas": {
+    "alfalfa": {
+      "fecha_creacion": "2025-01-01",
+      "humedad_minima_recomendada": 60,
+      "nombre": "Alfalfa"
+    },
+    "romero": {
+      "fecha_creacion": "2025-01-01",
+      "humedad_minima_recomendada": 40,
+      "nombre": "Romero"
+    }
+  },
+  "sensores": {
+    "sensor1": {
+      "fecha": "2025-12-14 17:29:54",
+      "humedad": 1,
+      "humedad_minima": 60,
+      "manual_cmd": "none",
+      "manual_off": false,
+      "manual_on": false,
+      "modo": "auto",
+      "planta": "alfalfa",
+      "rele_estado": 0
+    },
+    "sensor2": {
+      "fecha": "2025-12-14 17:20:54",
+      "humedad": 0, 
+      "humedad_minima": 40,
+      "manual_cmd": "none",
+      "manual_off": false,
+      "manual_on": false,
+      "modo": "auto",
+      "planta": "romero",
+      "rele_estado": 0
+    }
+  },
+  "sistema": {
+    "bomba_estado": 0
+  }
+}

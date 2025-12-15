@@ -1,63 +1,30 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { useHumedad } from '../context/HumedadContext';
 
 const Grafico = () => {
-  const [data, setData] = useState([]);
-  const { setHumedadActual } = useHumedad();
+  const { sensores, datosGrafico, setDatosGrafico, isOnline } = useHumedad();
 
-  // Generar datos iniciales
+  // Actualizar gráfico con datos de Firebase
   useEffect(() => {
-    const initialData = [];
-    const now = new Date();
-    
-    for (let i = 9; i >= 0; i--) {
-      const time = new Date(now - i * 10000);
-      const humedad1 = Math.floor(Math.random() * 30) + 50; // Humedad 1 entre 50-80%
-      const humedad2 = Math.floor(Math.random() * 30) + 50; // Humedad 2 entre 50-80%
-      initialData.push({
-        humedad1,
-        humedad2,
-        timestamp: time.getTime()
-      });
-    }
-    
-    setData(initialData);
-    // Actualizar humedad actual con los últimos valores
-    if (initialData.length > 0) {
-      const ultimo = initialData[initialData.length - 1];
-      setHumedadActual({ alfalfa: ultimo.humedad1, planta2: ultimo.humedad2 });
-    }
-  }, [setHumedadActual]);
-
-  // Actualizar datos cada 10 segundos
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setData(prevData => {
-        const newTime = new Date();
-        const humedad1 = Math.floor(Math.random() * 30) + 50;
-        const humedad2 = Math.floor(Math.random() * 30) + 50;
+    if (sensores.sensor1 && sensores.sensor2) {
+      setDatosGrafico(prevData => {
         const newPoint = {
-          humedad1,
-          humedad2,
-          timestamp: newTime.getTime()
+          humedad1: sensores.sensor1.humedad || 0,
+          humedad2: sensores.sensor2.humedad || 0,
+          timestamp: new Date().getTime()
         };
 
-        // Actualizar ambas humedades en el contexto
-        setHumedadActual({ alfalfa: humedad1, planta2: humedad2 });
-
-        // Mantener solo los últimos 20 puntos
+        // Mantener solo los últimos 12 puntos
         const updatedData = [...prevData, newPoint];
-        if (updatedData.length > 20) {
+        if (updatedData.length > 12) {
           updatedData.shift();
         }
 
         return updatedData;
       });
-    }, 10000); // 10 segundos
-
-    return () => clearInterval(interval);
-  }, [setHumedadActual]);
+    }
+  }, [sensores, setDatosGrafico]);
 
   // Custom tooltip para mostrar información detallada
   const CustomTooltip = ({ active, payload }) => {
@@ -85,15 +52,31 @@ const Grafico = () => {
   };
 
   // Agregar ID único a cada punto
-  const dataWithId = data.map((p, idx) => ({ ...p, id: idx }));
+  const dataWithId = datosGrafico.map((p, idx) => ({ ...p, id: idx }));
 
   return (
     <div className="w-full px-4 py-8" style={{ transform: "none" }}>
       <div className="max-w-7xl mx-auto">
         <div className="bg-white rounded-lg shadow-lg p-6">
-          <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
-            Control de la Humedad en Tiempo Real
-          </h2>
+          <div className="flex justify-between items-center mb-6">
+            <h2 className="text-2xl font-bold text-gray-800">
+              Control de la Humedad en Tiempo Real
+            </h2>
+            <div className="flex gap-4">
+              <div className="flex items-center gap-2">
+                <div className={`w-3 h-3 rounded-full ${isOnline.sensor1 ? 'bg-green-500' : 'bg-red-500'}`}></div>
+                <span className="text-sm font-semibold">
+                  {sensores.sensor1?.planta || 'Sensor 1'}: {isOnline.sensor1 ? 'Online' : 'Offline'}
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className={`w-3 h-3 rounded-full ${isOnline.sensor2 ? 'bg-green-500' : 'bg-red-500'}`}></div>
+                <span className="text-sm font-semibold">
+                  {sensores.sensor2?.planta || 'Sensor 2'}: {isOnline.sensor2 ? 'Online' : 'Offline'}
+                </span>
+              </div>
+            </div>
+          </div>
           
           <div style={{ width: "100%", height: 400, transform: "none" }}>
             <ResponsiveContainer width="100%" height={400}>
@@ -105,7 +88,7 @@ const Grafico = () => {
                 scale="time"
                 allowDataOverflow={true}
                 domain={['auto', 'auto']}
-                tickCount={data.length}
+                tickCount={datosGrafico.length}
                 interval={0}
                 angle={-90}
                 textAnchor="end"
