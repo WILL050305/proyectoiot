@@ -42,20 +42,7 @@ const GraficoView = ({ datosGrafico, sensores, isOnline }) => {
             <h2 className="text-2xl font-bold text-gray-800">
               Control de la Humedad en Tiempo Real
             </h2>
-            <div className="flex gap-4">
-              <div className="flex items-center gap-2">
-                <div className={`w-3 h-3 rounded-full ${isOnline.sensor1 ? 'bg-green-500' : 'bg-red-500'}`}></div>
-                <span className="text-sm font-semibold">
-                  {sensores.sensor1?.planta || 'Sensor 1'}: {isOnline.sensor1 ? 'Online' : 'Offline'}
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className={`w-3 h-3 rounded-full ${isOnline.sensor2 ? 'bg-green-500' : 'bg-red-500'}`}></div>
-                <span className="text-sm font-semibold">
-                  {sensores.sensor2?.planta || 'Sensor 2'}: {isOnline.sensor2 ? 'Online' : 'Offline'}
-                </span>
-              </div>
-            </div>
+
           </div>
           
           <div style={{ width: "100%", height: 400, transform: "none" }}>
