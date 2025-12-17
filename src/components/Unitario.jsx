@@ -1,26 +1,76 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { useHumedad } from '../context/HumedadContext';
 
 const Unitario = () => {
   const { datosGrafico, sensores, toggleRiego, historial } = useHumedad();
   const [loading, setLoading] = useState({ sensor1: false, sensor2: false });
+  const [simulatedData, setSimulatedData] = useState([]);
 
-  // Extraer últimos 8 puntos para Alfalfa
-  const dataAlfalfa = useMemo(() => {
-    return datosGrafico.slice(-8).map(d => ({
-      humedad: d.humedad1,
-      timestamp: d.timestamp
-    }));
-  }, [datosGrafico]);
+  // Generar datos simulados
+  const generateSimulatedData = () => {
+    const newData = [];
+    let humedad1 = 55;
+    let humedad2 = 65;
 
-  // Extraer últimos 8 puntos para Planta 2
-  const dataPlanta2 = useMemo(() => {
-    return datosGrafico.slice(-8).map(d => ({
-      humedad: d.humedad2,
-      timestamp: d.timestamp
-    }));
-  }, [datosGrafico]);
+    for (let i = 0; i < 8; i++) {
+      // Simular variaciones naturales de humedad
+      humedad1 += (Math.random() - 0.5) * 8;
+      humedad2 += (Math.random() - 0.5) * 8;
+
+      // Mantener valores dentro del rango 30-90%
+      humedad1 = Math.max(30, Math.min(90, humedad1));
+      humedad2 = Math.max(30, Math.min(90, humedad2));
+
+      newData.push({
+        humedad1: Math.round(humedad1),
+        humedad2: Math.round(humedad2),
+        timestamp: new Date(Date.now() - (7 - i) * 60000).getTime() // Intervalos de 1 minuto
+      });
+    }
+    return newData;
+  };
+
+  // Inicializar datos simulados
+  useEffect(() => {
+    setSimulatedData(generateSimulatedData());
+  }, []);
+
+  // Actualizar gráfico con datos simulados cada 10 segundos
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSimulatedData(prevData => {
+        if (prevData.length === 0) return prevData;
+
+        let humedad1 = prevData[prevData.length - 1].humedad1;
+        let humedad2 = prevData[prevData.length - 1].humedad2;
+
+        // Simular variaciones naturales
+        humedad1 += (Math.random() - 0.5) * 8;
+        humedad2 += (Math.random() - 0.5) * 8;
+
+        // Mantener valores dentro del rango 30-90%
+        humedad1 = Math.max(30, Math.min(90, humedad1));
+        humedad2 = Math.max(30, Math.min(90, humedad2));
+
+        const newPoint = {
+          humedad1: Math.round(humedad1),
+          humedad2: Math.round(humedad2),
+          timestamp: new Date().getTime()
+        };
+
+        // Mantener solo los últimos 8 puntos
+        const updatedData = [...prevData, newPoint];
+        if (updatedData.length > 8) {
+          updatedData.shift();
+        }
+
+        return updatedData;
+      });
+    }, 10000); // Actualizar cada 10 segundos
+
+    return () => clearInterval(interval);
+  }, []);
 
 
   // ===========================

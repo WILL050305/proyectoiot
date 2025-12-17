@@ -1,11 +1,78 @@
 /**
  * VISTA: GraficoView
- * Vista del gráfico de humedad en tiempo real
+ * Vista del gráfico de humedad en tiempo real con simulación
  */
 
+import { useEffect, useState } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const GraficoView = ({ datosGrafico, sensores, isOnline }) => {
+  const [simulatedData, setSimulatedData] = useState([]);
+
+  // Generar datos simulados
+  const generateSimulatedData = () => {
+    const newData = [];
+    let humedad1 = 55;
+    let humedad2 = 65;
+
+    for (let i = 0; i < 12; i++) {
+      // Simular variaciones naturales de humedad
+      humedad1 += (Math.random() - 0.5) * 8;
+      humedad2 += (Math.random() - 0.5) * 8;
+
+      // Mantener valores dentro del rango 30-90%
+      humedad1 = Math.max(30, Math.min(90, humedad1));
+      humedad2 = Math.max(30, Math.min(90, humedad2));
+
+      newData.push({
+        humedad1: Math.round(humedad1),
+        humedad2: Math.round(humedad2),
+        timestamp: new Date(Date.now() - (11 - i) * 60000).getTime() // Intervalos de 1 minuto
+      });
+    }
+    return newData;
+  };
+
+  // Inicializar datos simulados
+  useEffect(() => {
+    setSimulatedData(generateSimulatedData());
+  }, []);
+
+  // Actualizar gráfico con datos simulados cada 10 segundos
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSimulatedData(prevData => {
+        if (prevData.length === 0) return prevData;
+
+        let humedad1 = prevData[prevData.length - 1].humedad1;
+        let humedad2 = prevData[prevData.length - 1].humedad2;
+
+        // Simular variaciones naturales
+        humedad1 += (Math.random() - 0.5) * 8;
+        humedad2 += (Math.random() - 0.5) * 8;
+
+        // Mantener valores dentro del rango 30-90%
+        humedad1 = Math.max(30, Math.min(90, humedad1));
+        humedad2 = Math.max(30, Math.min(90, humedad2));
+
+        const newPoint = {
+          humedad1: Math.round(humedad1),
+          humedad2: Math.round(humedad2),
+          timestamp: new Date().getTime()
+        };
+
+        // Mantener solo los últimos 12 puntos
+        const updatedData = [...prevData, newPoint];
+        if (updatedData.length > 12) {
+          updatedData.shift();
+        }
+
+        return updatedData;
+      });
+    }, 10000); // Actualizar cada 10 segundos
+
+    return () => clearInterval(interval);
+  }, []);
   // Custom tooltip para mostrar información detallada
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length > 0) {
@@ -32,7 +99,7 @@ const GraficoView = ({ datosGrafico, sensores, isOnline }) => {
   };
 
   // Agregar ID único a cada punto
-  const dataWithId = datosGrafico.map((p, idx) => ({ ...p.toJSON(), id: idx }));
+  const dataWithId = simulatedData.map((p, idx) => ({ ...p, id: idx }));
 
   return (
     <div className="w-full px-4 py-8" style={{ transform: "none" }}>
@@ -55,7 +122,7 @@ const GraficoView = ({ datosGrafico, sensores, isOnline }) => {
                   scale="time"
                   allowDataOverflow={true}
                   domain={['auto', 'auto']}
-                  tickCount={datosGrafico.length}
+                  tickCount={simulatedData.length}
                   interval={0}
                   angle={-90}
                   textAnchor="end"
